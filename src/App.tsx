@@ -1,9 +1,14 @@
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 
 export const App = () => {
+  const { pathname } = useLocation();
+
+  const isHomeActive = pathname.includes('/');
+  const isTabsActive = pathname.startsWith('/tabs');
+
   return (
     <>
       <nav
@@ -13,23 +18,13 @@ export const App = () => {
         <div className="container">
           <div className="navbar-brand">
             <ul className="navbar-start">
-              <li>
-                <NavLink
-                  to="/"
-                  className={({ isActive }) =>
-                    `navbar-item${isActive ? ' is-active' : ''}`
-                  }
-                >
+              <li className={isHomeActive ? 'is-active' : ''}>
+                <NavLink className="navbar-item" to="/">
                   Home
                 </NavLink>
               </li>
-              <li>
-                <NavLink
-                  to="/tabs"
-                  className={({ isActive }) =>
-                    `navbar-item${isActive ? ' is-active' : ''}`
-                  }
-                >
+              <li className={isTabsActive ? 'is-active' : ''}>
+                <NavLink className="navbar-item" to="/tabs">
                   Tabs
                 </NavLink>
               </li>
