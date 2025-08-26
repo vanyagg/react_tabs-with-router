@@ -15,7 +15,7 @@ createRoot(document.getElementById('root') as HTMLElement).render(
       <Route path="/" element={<App />}>
         <Route index element={<h1 className="title">Home page</h1>} />
         <Route path="home" element={<Navigate to="/" replace />} />
-        <Route path="tabs" >
+        <Route path="tabs">
           <Route index element={<TabsPage tabs={tabs} />} />
           <Route path=":tabId" element={<TabsPage tabs={tabs} />} />
         </Route>

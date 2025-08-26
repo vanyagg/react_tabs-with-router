@@ -2,13 +2,8 @@ import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
 import { NavLink, Outlet } from 'react-router-dom';
-import classNames from 'classnames';
-
 
 export const App = () => {
-  const linkClass = ({ isActive }: { isActive: boolean }) =>
-    classNames('navbar-item', { 'is-active': isActive });
-
   return (
     <>
       <nav
@@ -17,12 +12,28 @@ export const App = () => {
       >
         <div className="container">
           <div className="navbar-brand">
-            <NavLink to="/" className={linkClass}>
-              Home
-            </NavLink>
-            <NavLink to="/tabs" className={linkClass}>
-              Tabs
-            </NavLink>
+            <ul className="navbar-start">
+              <li>
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    `navbar-item${isActive ? ' is-active' : ''}`
+                  }
+                >
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/tabs"
+                  className={({ isActive }) =>
+                    `navbar-item${isActive ? ' is-active' : ''}`
+                  }
+                >
+                  Tabs
+                </NavLink>
+              </li>
+            </ul>
           </div>
         </div>
       </nav>
